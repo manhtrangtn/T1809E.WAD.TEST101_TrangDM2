@@ -136,6 +136,10 @@
     <Compile Include="Migrations\202003071346380_InitTables.designer.cs">
       <DependentUpon>202003071346380_InitTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003071435289_InitTables2.cs" />
+    <Compile Include="Migrations\202003071435289_InitTables2.designer.cs">
+      <DependentUpon>202003071435289_InitTables2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Penalty.cs" />
@@ -202,6 +206,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003071346380_InitTables.resx">
       <DependentUpon>202003071346380_InitTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003071435289_InitTables2.resx">
+      <DependentUpon>202003071435289_InitTables2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

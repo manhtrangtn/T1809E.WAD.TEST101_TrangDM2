@@ -17,9 +17,9 @@ namespace T1809E.WAD.TEST101_TrangDM2.Controllers
         // GET: Penalties
         public ActionResult Index()
         {
-          int pushUp = db.Penalties.Sum(p => p.PushUp);
-          double money = db.Penalties.Sum(p => p.Money);
-            ViewBag.PushUp = pushUp;
+          int pushUp = db.Penalties.Where(t => t.Method == 0).Sum(p => p.Amount);
+          int money = db.Penalties.Where(t => t.Method != 0).Sum(p => p.Amount);
+          ViewBag.PushUp = pushUp;
           ViewBag.Money = money;
             return View(db.Penalties.ToList());
         }
@@ -50,12 +50,17 @@ namespace T1809E.WAD.TEST101_TrangDM2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Method,Money,PushUp,DateTime")] Penalty penalty)
+        public ActionResult Create([Bind(Include = "Id,StudentId,Method,Amount,DateTime")] Penalty penalty)
         {
-              penalty.DateTime = DateTime.Now;
+          penalty.DateTime = DateTime.Now;
+            if (ModelState.IsValid)
+            {
                 db.Penalties.Add(penalty);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+
+            return View(penalty);
         }
 
         // GET: Penalties/Edit/5
@@ -78,7 +83,7 @@ namespace T1809E.WAD.TEST101_TrangDM2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StudentId,Method,Money,PushUp,DateTime")] Penalty penalty)
+        public ActionResult Edit([Bind(Include = "Id,StudentId,Method,Amount,DateTime")] Penalty penalty)
         {
             if (ModelState.IsValid)
             {

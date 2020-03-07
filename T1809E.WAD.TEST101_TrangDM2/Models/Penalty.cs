@@ -11,8 +11,7 @@ namespace T1809E.WAD.TEST101_TrangDM2.Models
       [Key] public int Id { get; set; }
       public string StudentId { get; set; }
       public PenaltyMethod Method { get; set; }
-      public double Money { get; set; }
-        public int PushUp { get; set; }
+      public int Amount { get; set; }
       public DateTime DateTime { get; set; }
       public enum PenaltyMethod
       {
